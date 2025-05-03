@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nihal's Link Page</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 400px;
+      padding: 30px;
+      border-radius: 20px;
+      background-color: #2a2a2a;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffaa;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .links a {
+      display: block;
+      background-color: #00ffaa;
+      color: #000;
+      text-decoration: none;
+      margin: 10px auto;
+      padding: 12px 20px;
+      width: 80%;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background-color: #fff;
+      color: #00ffaa;
+      transform: scale(1.05);
+    }
+
+    .toggle-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      background-color: #555;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background-color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Light Mode Styles */
+    body.light {
+      background-color: #f2f2f2;
+      color: #000;
+    }
+
+    body.light .container {
+      background-color: #fff;
+      color: #000;
+    }
+
+    body.light .links a {
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    body.light .links a:hover {
+      background-color: #00ffaa;
+      color: #000;
+    }
+
+    body.light .toggle-btn {
+      background-color: #ddd;
+      color: #000;
+    }
+
+    body.light .toggle-btn:hover {
+      background-color: #bbb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="ChatGPT Image Apr 19, 2025, 02_57_24 PM - Shortcut.lnk" alt="Nihal Raza" class="profile-pic" />
+    <h1>Nihal Raza</h1>
+    <p>AI Developer | Frontend | Mentor</p>
+
+    <div class="links">
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://fiverr.com" target="_blank">Fiverr</a>
+      <a href="https://your-portfolio.com" target="_blank">Portfolio</a>
+    </div>
+
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark/Light</button>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
+</body>
+</html>
