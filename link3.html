@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nihal's Link Hub V3</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f0c29;
+      --text-color: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --link-color: #00f5d4;
+    }
+
+    body.light {
+      --bg-color: #f0f0f0;
+      --text-color: #111;
+      --card-bg: rgba(0, 0, 0, 0.05);
+      --link-color: #0077ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.4s, color 0.4s;
+      overflow: hidden;
+    }
+
+    .background {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, #00f5d4, #9b5de5, #f15bb5, #fee440);
+      background-size: 600% 600%;
+      animation: gradientMove 20s ease infinite;
+      z-index: -1;
+      opacity: 0.15;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 25px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+    }
+
+    .profile-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid var(--link-color);
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: transparent;
+      border: 2px solid var(--link-color);
+      color: var(--link-color);
+      text-decoration: none;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background-color: var(--link-color);
+      color: var(--bg-color);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px var(--link-color);
+    }
+
+    .theme-toggle {
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--link-color);
+      transition: color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      color: #ff4d6d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+
+  <div class="container">
+    <img src="https://i.pravatar.cc/150?img=15" alt="Profile" class="profile-img" />
+    <h1>Nihal Raza</h1>
+    <p>AI Engineer • Web Developer • Mentor</p>
+
+    <div class="links">
+      <a href="https://linkedin.com"><i class="fab fa-linkedin"></i>LinkedIn</a>
+      <a href="https://github.com"><i class="fab fa-github"></i>GitHub</a>
+      <a href="https://instagram.com"><i class="fab fa-instagram"></i>Instagram</a>
+      <a href="https://facebook.com"><i class="fab fa-facebook"></i>Facebook</a>
+      <a href="https://fiverr.com"><i class="fas fa-briefcase"></i>Fiverr</a>
+      <a href="https://yourportfolio.com"><i class="fas fa-globe"></i>Portfolio</a>
+    </div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">
+      🌓 Toggle Theme
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+    }
+  </script>
+
+</body>
+</html>
