@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LinkHub V5 - Nihal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffe7;
+      --gradient: linear-gradient(45deg, #00ffe7, #ff00c8, #00b3ff);
+      --bg: #0b0c10;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      background: var(--gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
+    }
+
+    @keyframes shine {
+      0% {background-position: 0%;}
+      100% {background-position: 200%;}
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .link {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      color: white;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeInUp 0.7s forwards ease-in-out;
+    }
+
+    .link:nth-child(1) { animation-delay: 0.2s; }
+    .link:nth-child(2) { animation-delay: 0.4s; }
+    .link:nth-child(3) { animation-delay: 0.6s; }
+    .link:nth-child(4) { animation-delay: 0.8s; }
+    .link:nth-child(5) { animation-delay: 1s; }
+
+    .link:hover {
+      transform: scale(1.05) rotate(1deg);
+      background: rgba(0, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15);
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .copied {
+      position: fixed;
+      top: 20px;
+      background: var(--primary);
+      color: black;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,255,255,0.3);
+      animation: fadeOut 2s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+
+    @media(max-width: 500px) {
+      h1 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>✨ Nihal's Awesome Links ✨</h1>
+
+  <div class="links">
+    <div class="link" data-url="https://www.linkedin.com/">LinkedIn</div>
+    <div class="link" data-url="https://github.com/">GitHub</div>
+    <div class="link" data-url="https://www.instagram.com/">Instagram</div>
+    <div class="link" data-url="https://www.fiverr.com/">Fiverr</div>
+    <div class="link" data-url="https://www.facebook.com/">Facebook</div>
+  </div>
+
+  <script>
+    const links = document.querySelectorAll('.link');
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        const url = link.getAttribute('data-url');
+        navigator.clipboard.writeText(url);
+        showCopied(url);
+      });
+    });
+
+    function showCopied(text) {
+      const div = document.createElement('div');
+      div.className = 'copied';
+      div.innerText = `Copied: ${text}`;
+      document.body.appendChild(div);
+      setTimeout(() => {
+        div.remove();
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
