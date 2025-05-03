@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkHub V7 - Nihal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0d1117;
+      font-family: 'Urbanist', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      width: 90%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .link-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 1.2rem;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(0, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+      z-index: 0;
+    }
+
+    .link-card:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+
+    .link-card span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .blob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,255,255,0.08), transparent 60%);
+      border-radius: 50%;
+      animation: moveBlob 20s infinite ease-in-out;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+    }
+
+    @keyframes moveBlob {
+      0%   { transform: translate(-50%, -50%) scale(1); }
+      50%  { transform: translate(-48%, -52%) scale(1.1); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    @media(max-width: 500px){
+      .link-card { font-size: 1rem; padding: 20px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="blob"></div>
+
+<div class="container">
+  <div class="link-card" data-url="https://www.linkedin.com/"><span>LinkedIn</span></div>
+  <div class="link-card" data-url="https://github.com/"><span>GitHub</span></div>
+  <div class="link-card" data-url="https://www.instagram.com/"><span>Instagram</span></div>
+  <div class="link-card" data-url="https://www.fiverr.com/"><span>Fiverr</span></div>
+  <div class="link-card" data-url="https://www.facebook.com/"><span>Facebook</span></div>
+</div>
+
+<script>
+  document.querySelectorAll('.link-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const url = card.getAttribute('data-url');
+      navigator.clipboard.writeText(url);
+      alert("Copied: " + url);
+    });
+  });
+</script>
+
+</body>
+</html>
