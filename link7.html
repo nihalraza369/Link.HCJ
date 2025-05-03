@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkHub V8 - Hyper Neon Flow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .neon-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1000px;
+      justify-content: center;
+    }
+
+    .neon-link {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      overflow: hidden;
+    }
+
+    .neon-link::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #00f0ff, #ff00f7, #00f0ff);
+      animation: rotate 4s linear infinite;
+      z-index: 0;
+      transition: opacity 0.3s;
+    }
+
+    .neon-link::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: #0f0c29;
+      border-radius: 15px;
+      z-index: 1;
+    }
+
+    .neon-link span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .neon-link:hover {
+      transform: scale(1.08);
+    }
+
+    .neon-link:hover::before {
+      opacity: 0.8;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .neon-link {
+        width: 140px;
+        height: 140px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="neon-container">
+  <div class="neon-link" data-url="https://www.linkedin.com/"><span>LinkedIn</span></div>
+  <div class="neon-link" data-url="https://github.com/"><span>GitHub</span></div>
+  <div class="neon-link" data-url="https://www.instagram.com/"><span>Instagram</span></div>
+  <div class="neon-link" data-url="https://www.fiverr.com/"><span>Fiverr</span></div>
+  <div class="neon-link" data-url="https://www.facebook.com/"><span>Facebook</span></div>
+</div>
+
+<script>
+  document.querySelectorAll('.neon-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const url = link.getAttribute('data-url');
+      navigator.clipboard.writeText(url);
+      alert("Copied: " + url);
+    });
+  });
+</script>
+
+</body>
+</html>
