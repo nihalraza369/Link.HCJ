@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkHub V10 - Iconic Galaxy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0f0c29, #24243e);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .space {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 2px);
+      animation: moveStars 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveStars {
+      0% { transform: rotate(0deg) scale(1); }
+      100% { transform: rotate(360deg) scale(1.5); }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 25px;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    .link-tile {
+      position: relative;
+      aspect-ratio: 1/1;
+      background: transparent;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.4s ease-in-out;
+      transform-style: preserve-3d;
+      perspective: 800px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+      overflow: hidden;
+    }
+
+    .link-tile::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #0ff, #f0f, #0ff);
+      animation: swirl 6s linear infinite;
+      opacity: 0.1;
+    }
+
+    .link-tile span, .link-tile i {
+      position: relative;
+      z-index: 1;
+    }
+
+    .link-tile i {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .link-tile:hover {
+      transform: rotateY(20deg) rotateX(20deg) scale(1.1);
+      box-shadow: 0 0 40px rgba(0,255,255,0.6);
+    }
+
+    .link-tile:hover::before {
+      opacity: 0.4;
+    }
+
+    @keyframes swirl {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        gap: 15px;
+      }
+      .link-tile {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="space"></div>
+
+<div class="grid">
+  <div class="link-tile" data-url="https://www.linkedin.com/"><i class="fab fa-linkedin"></i><span>LinkedIn</span></div>
+  <div class="link-tile" data-url="https://github.com/"><i class="fab fa-github"></i><span>GitHub</span></div>
+  <div class="link-tile" data-url="https://www.instagram.com/"><i class="fab fa-instagram"></i><span>Instagram</span></div>
+  <div class="link-tile" data-url="https://www.fiverr.com/"><i class="fas fa-briefcase"></i><span>Fiverr</span></div>
+  <div class="link-tile" data-url="https://www.facebook.com/"><i class="fab fa-facebook"></i><span>Facebook</span></div>
+</div>
+
+<script>
+  document.querySelectorAll('.link-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      const url = tile.getAttribute('data-url');
+      navigator.clipboard.writeText(url);
+      alert("Copied to clipboard: " + url);
+    });
+  });
+</script>
+
+</body>
+</html>
