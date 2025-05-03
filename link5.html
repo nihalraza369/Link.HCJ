@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkHub V4 - Nihal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00f5d4;
+      --bg-dark: #0a0a23;
+      --bg-light: #f4f4f4;
+      --text-dark: #fff;
+      --text-light: #111;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-dark);
+      overflow: hidden;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      background: url('https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/demo/media/stars.png') repeat;
+      animation: starMove 200s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes starMove {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(0,255,255,0.1);
+      width: 100%;
+      text-align: center;
+    }
+
+    .typing {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border-right: 2px solid var(--primary);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(20, end) forwards, blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    input, button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      margin: 10px 0;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    input {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    button {
+      background: var(--primary);
+      color: black;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0ff;
+    }
+
+    .link-list {
+      margin-top: 20px;
+    }
+
+    .link-item {
+      background: rgba(0,255,255,0.1);
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .link-item:hover {
+      background: var(--primary);
+      color: black;
+      transform: scale(1.02);
+    }
+
+    .hidden { display: none; }
+
+    .theme-toggle {
+      margin-top: 15px;
+      cursor: pointer;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="container">
+  <div id="login" class="glass">
+    <h2>Welcome! Enter Your Name</h2>
+    <input type="text" id="nameInput" placeholder="Your Name">
+    <button onclick="saveName()">Start</button>
+  </div>
+
+  <div id="mainApp" class="glass hidden">
+    <div class="typing" id="typeText"></div>
+    <p>Add Your Favorite Links:</p>
+    <input type="text" id="linkText" placeholder="Link Text (e.g. GitHub)">
+    <input type="url" id="linkURL" placeholder="https://github.com/yourprofile">
+    <button onclick="addLink()">Add Link</button>
+
+    <div class="link-list" id="links"></div>
+
+    <div class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</div>
+  </div>
+</div>
+
+<script>
+  const nameInput = document.getElementById("nameInput");
+  const loginDiv = document.getElementById("login");
+  const mainApp = document.getElementById("mainApp");
+  const typeText = document.getElementById("typeText");
+
+  function saveName() {
+    const name = nameInput.value.trim();
+    if (!name) return alert("Please enter your name!");
+    localStorage.setItem("userName", name);
+    loginDiv.classList.add("hidden");
+    mainApp.classList.remove("hidden");
+    startTyping(name);
+  }
+
+  function startTyping(name) {
+    typeText.textContent = `Welcome, ${name}!`;
+  }
+
+  function addLink() {
+    const text = document.getElementById("linkText").value.trim();
+    const url = document.getElementById("linkURL").value.trim();
+    if (!text || !url) return alert("Please fill both fields");
+
+    const container = document.getElementById("links");
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.className = "link-item";
+    link.innerText = text;
+
+    container.appendChild(link);
+
+    document.getElementById("linkText").value = '';
+    document.getElementById("linkURL").value = '';
+  }
+
+  function toggleTheme() {
+    document.body.classList.toggle("light");
+  }
+
+  // Check LocalStorage for saved name
+  const savedName = localStorage.getItem("userName");
+  if (savedName) {
+    loginDiv.classList.add("hidden");
+    mainApp.classList.remove("hidden");
+    startTyping(savedName);
+  }
+</script>
+
+</body>
+</html>
